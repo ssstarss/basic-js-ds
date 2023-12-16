@@ -16,7 +16,7 @@ describe('Queue', async () => {
     queue.enqueue(6);
     queue.enqueue(7);
     assert.strictEqual(queue.dequeue(), 5);
-    assert.strictEqual(queue.dequeue(), 6);
+     assert.strictEqual(queue.dequeue(), 6);
   });
 
   it.optional('should return correct linked list', () => {

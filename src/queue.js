@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+ const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Implement the Queue with a given interface via linked list (use ListNode extension above).
@@ -15,20 +15,60 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 class Queue {
 
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+  constructor() {
+    this.value = null;
+    this.next = null;
+    }
+  
+    getUnderlyingList() {
+    /*  if (this.next == null) return this.value
+      function findLast(l) {
+        let out = undefined;
+        if (l.next == null){ 
+          out = l.value;
+          return out;
+        }
+      return findLast(l.next);
+      }
+       return findLast(this) */
+      return this;
+       }
+    
+  enqueue( value ) {
+    if (this.value == null && this.next == null) {
+      this.value  = value;
+      return;
+    }
+   function findlast(l){
+      if (l.next == null) {
+        l.next = new ListNode(value);
+       return l ;
+      } else findlast(l.next)
+      return l;
+    }
+    let n = new  ListNode(null);
+    n = findlast(this);
+    this.next = n.next;
+    this.value =n.value; 
+        
+    }
+  
+      dequeue() {
+        let out = this.value;
+        this.value = this.next.value;
+        this.next = this.next.next;
+        return out;
+        
+      /*function deleteLast(l) {
+        if (l.next.next == null){
+        let out = l.next.value;
+        l.next = null
+        return out;
+        }
+        return deleteLast(l.next);
+      }
+      return deleteLast(this) */
+      }
 }
 
 module.exports = {
